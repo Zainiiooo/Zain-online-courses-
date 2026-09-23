@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zain Online Courses</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#173b72;color:white;text-align:center;padding:28px 15px}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0;font-size:16px}
+.container{max-width:700px;margin:25px auto;padding:0 15px}
+.card{background:white;border-radius:16px;padding:22px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,.08)}
+h2{margin-top:0;color:#173b72}
+input{width:100%;padding:13px;border:1px solid #ccd4df;border-radius:8px;font-size:16px;margin:8px 0 12px}
+button{width:100%;padding:13px;border:0;border-radius:8px;background:#173b72;color:white;font-size:16px;font-weight:bold}
+button:hover{background:#102d58}
+.result{display:none;margin-top:18px;border-top:1px solid #ddd;padding-top:18px}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee}
+.grade{font-weight:bold}
+.error{color:#b00020;margin-top:12px}
+footer{text-align:center;padding:20px;color:#667085}
+.small{color:#667085;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Zain Online Courses</h1>
+  <p>Graphic Designer Course</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Student Result</h2>
+    <p class="small">Enter your roll number to check your result.</p>
+    <input id="roll" type="text" placeholder="Enter Roll No.">
+    <button onclick="checkResult()">Check Result</button>
+
+    <div id="error" class="error"></div>
+
+    <div id="result" class="result">
+      <div class="row"><b>Student Name</b><span id="name"></span></div>
+      <div class="row"><b>Roll No.</b><span id="rollNo"></span></div>
+      <div class="row"><b>Course</b><span>Graphic Designer</span></div>
+      <div class="row"><b>Marks</b><span id="marks"></span></div>
+      <div class="row"><b>Percentage</b><span id="percentage"></span></div>
+      <div class="row"><b>Grade</b><span class="grade" id="grade"></span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>About Course</h2>
+    <p>Welcome to Zain Online Courses. This website is for the Graphic Designer course and student results.</p>
+  </div>
+</div>
+
+<footer>© 2026 Zain Online Courses</footer>
+
+<script>
+const results = {
+  "20091": {
+    name: "Ali",
+    marks: "45 / 50",
+    percentage: "90%",
+    grade: "A+"
+  }
+};
+
+function checkResult(){
+  const roll = document.getElementById("roll").value.trim();
+  const error = document.getElementById("error");
+  const box = document.getElementById("result");
+
+  if(results[roll]){
+    const r = results[roll];
+    document.getElementById("name").textContent = r.name;
+    document.getElementById("rollNo").textContent = roll;
+    document.getElementById("marks").textContent = r.marks;
+    document.getElementById("percentage").textContent = r.percentage;
+    document.getElementById("grade").textContent = r.grade;
+    error.textContent = "";
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+    error.textContent = "Result not found. Please check your roll number.";
+  }
+}
+</script>
+
+</body>
+</html>
